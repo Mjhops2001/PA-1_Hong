@@ -1,5 +1,5 @@
 CMakeFiles/PA1.dir/main.cpp.o: \
- /home/mattthewhong/CPTS223/PA-1_Hong/main.cpp /usr/include/stdc-predef.h \
+ /home/matthewhong/CPTS223/PA-1_Hong/main.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/11/fstream /usr/include/c++/11/istream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -151,4 +151,4 @@ CMakeFiles/PA1.dir/main.cpp.o: \
  /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
  /usr/include/c++/11/limits /usr/include/c++/11/ctime \
  /usr/include/c++/11/bits/parse_numbers.h \
- /home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.cpp
+ /home/matthewhong/CPTS223/PA-1_Hong/linkedlist.cpp
