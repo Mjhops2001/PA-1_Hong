@@ -10,24 +10,74 @@ ADVANTAGES/DISADVANTAGES ARRAY
 #include <string>
 #include <cstdlib>
 #include <chrono>
-#include <ctime> 
+#include <ctime>
 #include "linkedlist.cpp"
 
 using namespace std;
 
-//void populate(Linked_List<string, string> *mainlist) // Read CSV and input data into a linked list
+struct profile_data{
+    string user_name = "player_name"; 
+    int user_points = -1;
+};
+
+/*
+ * populate()
+ ? reads commands.csv & inputs data into linked list
+ */
+// void populate(Linked_List<string, string> *mainlist) // Read CSV and input data into a linked list
 //{
-    // ====================
-    // ======= code =======
-    // ====================
+//  ====================
+//  ======= code =======
+//  ====================
 //}
+
+/*
+ * check()
+ ? checks if the passed ifstream/ofstream variable opened properly
+ ? returns true if open, false if closed
+ */
+bool check(ifstream &myFile)
+{
+    //? T/F variable
+    bool boolean;
+
+    if (myFile.is_open())
+    {
+        cout << "File Status: OPEN" << endl;
+        boolean = true;
+    }
+    else
+    {
+        cout << "File Status: CLOSED - NOT FOUND" << endl;
+        boolean = false;
+    }
+
+    return boolean;
+}
+bool check(ofstream &myFile)
+{
+    bool boolean;
+
+    if (myFile.is_open())
+    {
+        cout << "File Status: OPEN" << endl;
+        boolean = true;
+    }
+    else
+    {
+        cout << "File Status: CLOSED - NOT FOUND" << endl;
+        boolean = false;
+    }
+
+    return boolean;
+}
 
 int main()
 {
-    // variables for the game: 
-    int userPoints = 0; 
-    string userName = "player_name";
+    //? variables for initializing 
+    profile_data save_data; 
 
+    //? Main Menu Loop
     while (true)
     {
         cout << "Please select an option listed below:\n";
@@ -35,181 +85,221 @@ int main()
 
         int selection;
         cin >> selection;
+        cout << endl
+             << endl;
 
-        if (selection == 2) //* Play Game
+        //? Play Game
+        if (selection == 2)
         {
+            cout << "---------------Play Game---------------" << endl;
+
             //* local vars to grab userName & the number of questions
             //* Note: questionNumber is a local variable for every game
             int qNumber;
-            string nInput; 
+            string nInput;
 
-            //* grab player name from input & store it in global userName 
+            //* grab player name from input & store it in global userName
             //* or print loaded user data grabbed from menu option 3
-            if(userName == "player_name"){
-                cout << "Please enter your name: ";  
-                cin >> nInput; 
-                userName = nInput; 
-            }else{
+            /* if (userName == "player_name")
+            {
+                cout << "Please enter your name: ";
+                cin >> nInput;
+                userName = nInput;
+            }
+            else
+            {
                 cout << "Loaded User Data: " << endl
                      << "Username: " << userName << endl
-                     << "Total Score: " << userPoints << endl; 
+                     << "Total Score: " << userPoints << endl;
             }
-            
 
             //* grab the number of questions from user input [between 5 - 30]
-            while(qNumber < 5 || qNumber > 30){
+            while (qNumber < 5 || qNumber > 30)
+            {
                 cout << "Please select how many questions you would like to " << endl
-                 << "be asked [5 - 30]: "; 
+                     << "be asked [5 - 30]: ";
 
-                 cin >> qNumber; 
+                cin >> qNumber;
             }
-            
+
             cout << "User selected " << qNumber << " questions." << endl;
+            */
+            cout << "---------------------------------------" << endl;
+            cout << endl
+                 << endl;
         }
-        else if (selection == 1) //* Game Rules
+
+        //? Game Rules -- Done
+        else if (selection == 1)
         {
-            // game rules & other functions of program
+            cout << "---------------Display Game Rules---------------" << endl;
+
+            //? Displays game rules & other program functions
             cout << "To play the game select \"2\" where you will be prompted" << endl
-                 << "for your name & number of questions" << endl 
+                 << "for your name & number of questions" << endl
                  << "Each question prompts the user with a specific linux" << endl
                  << "command wher you will then be able to choose from 3 " << endl
                  << "different options. Each correct answer yields a single" << endl
                  << "point and wrong answers remove a single point." << endl
-                 << "One can also add & delete commands as needed" << endl; 
+                 << "One can also add & delete commands as needed" << endl;
+
+            cout << "------------------------------------------------" << endl;
+            cout << endl
+                 << endl;
         }
-        else if (selection == 3) //* Load Previous Game
+
+        //? Load Previous Game
+        else if (selection == 3)
         {
-            cout << "--------Load Previous Game--------" << endl;
-            //* open file containing the saved profiles
-            ifstream myProfiles("/home/matthewhong/CPTS223/PA-1_Hong/profiles.csv"); 
-            
-            //* necessary variables: 
-            string target; 
+            cout << "---------------Load Previous Game---------------" << endl;
 
-            //* confirm if file is open
-            if(myProfiles.is_open()){
-                cout << "File is open, continuing operations." << endl; 
-            }else{
-                cout << "File failed to open, terminating." << endl;
-            }
+            //? create input file stream & check file status
+            ifstream myProfiles("/home/matthewhong/CPTS223/PA-1_Hong/profiles.csv");
+            check(myProfiles);
 
-            //* grab name to search for
-            cout << "Enter profile name: "; 
-            cin.ignore(); 
-            cin >> target; 
+            //? parse thru file contents
+            bool target_found = false;
+            string input,
+                target;
 
-        
-            //* parse thru file
-            string line, fString; 
-            while(getline(myProfiles, line)){
-                stringstream stream(line); 
+            //? input target username we're searching for
+            cout << "Enter profile name: ";
+            cin.ignore();
+            cin >> target;
 
-                while(getline(stream, fString, ',')){
-                    if(target == fString){
-                        //* set global username to fString [or target]
-                        userName = fString; 
+            string line,
+                fString;
 
-                        //* parse to the next item on the current line
-                        getline(stream, fString, ','); 
+            while (getline(myProfiles, line))
+            {
+                stringstream stream(line);
 
-                        //* set global userpoints to fString [will be the # of points stored next to the user's name]
-                        userPoints = stoi(fString); 
+                while (getline(stream, fString, ','))
+                {
+                    if (target == fString)
+                    {
+                        target_found = true;
+                        //? set global variable username to fString [or target]
+                        save_data.user_name = fString;
+
+                        //? parse to the next item [the user's points]
+                        getline(stream, fString, ',');
+
+                        //? set global userpoints to fString [will be the # of points stored next to the user's name]
+                        save_data.user_points = stoi(fString);
                     }
                 }
-
-                if(userName == "player_name"){
-                    cout << "Target name wasn't found." << endl; 
-                }else{
-                    cout << "Target found, displaying user info: " << endl
-                         << "Username: " << userName << endl
-                         << "Total Score: " << userPoints << endl; 
-                }  
             }
-            
-            myProfiles.close(); 
 
-            cout << "----------------------------------" << endl; 
-            cout << endl << endl; 
+            //? display target info if found
+            if (target_found == true)
+            {
+                cout << "Target found, displaying user info: " << endl
+                     << "Username: " << save_data.user_name << endl
+                     << "Total Score: " << save_data.user_points << endl;
+            }else //? target wasn't found, return to main loop
+            {
+                cout << "Target wasn't found" << endl;
+            }
+
+            //? close file to ensure data isn't lost
+            myProfiles.close();
+
+            cout << "------------------------------------------------" << endl;
+            cout << endl
+                 << endl;
         }
-        else if (selection == 4) //* Add Command
+
+        //? Add Commands --will have to re-do, only alterations should be made to the linked list, not the actual .csv in this function
+        else if (selection == 4)
         {
-            cout << "--------Add Command--------" << endl;
-            //* create output file variable
-            ofstream commands("/home/matthewhong/CPTS223/PA-1_Hong/commands.csv", ios::app); 
+            cout << "---------------Add commands---------------" << endl;
+            //? create output file & check status
+            ofstream commands("/home/matthewhong/CPTS223/PA-1_Hong/commands.csv", ios::app);
+            check(commands);
 
-            //* create variable to give user control over looping the adding process
-            bool adding_items = true; 
+            //? create input variables to store user inputted data
+            string inputName, inputDesc, input;
 
-            //* create input variables to store user inputted data
-            string inputName, inputDesc, input; 
+            //? Main loop to add commands
+            bool adding_items = true;
+            while (adding_items == true)
+            {
 
-
-            //* check if file is open
-            if(commands.is_open()){
-                cout << "File is open, continuing operations." << endl; 
-            }else{
-                cout << "File failed to open, terminating." << endl;
-            }
-            
-            
-            //* Main loop to add commands
-            while(adding_items == true){
-                //* grab command name
+                //? input command name
                 cout << "Enter command name: ";
-                cin.ignore();  
-                cin >> inputName;  
+                cin.ignore();
+                cin >> inputName;
 
-
-                //* grab command description: 
+                //? input command description
                 cout << "Enter command description: ";
                 cin.ignore();
-                getline(cin, inputDesc); 
+                getline(cin, inputDesc);
 
+                //? write command name & desc. to commands.csv & console to
+                //? confirm it was added
+                commands << inputName << ",\"" << inputDesc << "\"" << endl;
+                cout << "Added command: " << inputName << endl;
 
-                //* write the previous inputs to the commands.csv file
-                commands << inputName << ",\"" << inputDesc << "\"" << endl;  
-                
+                //? input y/n to continue adding commands or return to main menu
+                do
+                {
+                    cout << "Continue adding commands? [y/n]";
+                    cin >> input;
 
-                //* input vars for this should only be 'y' or 'n'
-                do{
-                    cout << "Continue adding commands? [y/n]"; 
-                    cin >> input; 
-
-                    if(input == "y"|| input == "n" || input == "yes" || input == "no"){
+                    if (input == "y" || input == "n" || input == "yes" || input == "no")
+                    {
                         break;
                     }
                 } while (true);
-                
 
-                //* if the input is equal to n or no, terminate the loop and go back
-                //* to the main menu loop
-                if(input == "n" || input == "no"){
-                    adding_items = false; 
+                //? if input = 'n', break out of sub-loop & return to main menu
+                if (input == "n" || input == "no")
+                {
+                    adding_items = false;
                 }
             }
-            
-            //* close file to safely store contents added
-            commands.close();
-            cout << "---------------------------" << endl; 
-            cout << endl << endl; 
 
+            //? close file to ensure no loss of data
+            commands.close();
+
+            cout << "------------------------------------------" << endl;
+            cout << endl
+                 << endl;
         }
-        else if (selection == 5) // Remove Command
+
+        //? Remove Commands
+        else if (selection == 5)
         {
-            // =====================
-            // ===== some code =====
-            // =====================
+            cout << "---------------Remove Commands---------------" << endl;
+
+            //? Might need to tinker w/ linked list, load all the elements
+            //? in commands.csv into said list then remove w/ linked list
+            //? functions and then re-write the edited list to
+            //? commands.csv
+
+            cout << "---------------------------------------------" << endl;
+            cout << endl
+                 << endl;
         }
-        else if (selection == 6) // Exit
+
+        //? Exit --Done
+        else if (selection == 6)
         {
-            //grab current date/time/year
+            cout << "---------------Exit Program---------------" << endl;
+
+            //? grab current date/time/year
             auto now = chrono::system_clock::now();
             time_t cTime = chrono::system_clock::to_time_t(now);
 
-            //display when the user exited the program
-            cout << "User Exited Program on " << ctime(&cTime) << endl; 
+            //? display when the user exited the program
+            cout << "User Exited Program on " << ctime(&cTime) << endl;
+
+            cout << "------------------------------------------" << endl;
+            cout << endl
+                 << endl;
+
             return 0;
         }
     }
 }
-
