@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/matthewhong/CPTS223/Hong_PA_1
+CMAKE_SOURCE_DIR = /home/mattthewhong/CPTS223/PA-1_Hong
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/matthewhong/CPTS223/Hong_PA_1/build
+CMAKE_BINARY_DIR = /home/mattthewhong/CPTS223/PA-1_Hong/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/PA1.dir/depend.make
@@ -72,30 +72,30 @@ include CMakeFiles/PA1.dir/flags.make
 CMakeFiles/PA1.dir/main.cpp.o: CMakeFiles/PA1.dir/flags.make
 CMakeFiles/PA1.dir/main.cpp.o: ../main.cpp
 CMakeFiles/PA1.dir/main.cpp.o: CMakeFiles/PA1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/matthewhong/CPTS223/Hong_PA_1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PA1.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PA1.dir/main.cpp.o -MF CMakeFiles/PA1.dir/main.cpp.o.d -o CMakeFiles/PA1.dir/main.cpp.o -c /home/matthewhong/CPTS223/Hong_PA_1/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mattthewhong/CPTS223/PA-1_Hong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PA1.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PA1.dir/main.cpp.o -MF CMakeFiles/PA1.dir/main.cpp.o.d -o CMakeFiles/PA1.dir/main.cpp.o -c /home/mattthewhong/CPTS223/PA-1_Hong/main.cpp
 
 CMakeFiles/PA1.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PA1.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/matthewhong/CPTS223/Hong_PA_1/main.cpp > CMakeFiles/PA1.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mattthewhong/CPTS223/PA-1_Hong/main.cpp > CMakeFiles/PA1.dir/main.cpp.i
 
 CMakeFiles/PA1.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PA1.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/matthewhong/CPTS223/Hong_PA_1/main.cpp -o CMakeFiles/PA1.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mattthewhong/CPTS223/PA-1_Hong/main.cpp -o CMakeFiles/PA1.dir/main.cpp.s
 
 CMakeFiles/PA1.dir/linkedlist.cpp.o: CMakeFiles/PA1.dir/flags.make
 CMakeFiles/PA1.dir/linkedlist.cpp.o: ../linkedlist.cpp
 CMakeFiles/PA1.dir/linkedlist.cpp.o: CMakeFiles/PA1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/matthewhong/CPTS223/Hong_PA_1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PA1.dir/linkedlist.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PA1.dir/linkedlist.cpp.o -MF CMakeFiles/PA1.dir/linkedlist.cpp.o.d -o CMakeFiles/PA1.dir/linkedlist.cpp.o -c /home/matthewhong/CPTS223/Hong_PA_1/linkedlist.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mattthewhong/CPTS223/PA-1_Hong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PA1.dir/linkedlist.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PA1.dir/linkedlist.cpp.o -MF CMakeFiles/PA1.dir/linkedlist.cpp.o.d -o CMakeFiles/PA1.dir/linkedlist.cpp.o -c /home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.cpp
 
 CMakeFiles/PA1.dir/linkedlist.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PA1.dir/linkedlist.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/matthewhong/CPTS223/Hong_PA_1/linkedlist.cpp > CMakeFiles/PA1.dir/linkedlist.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.cpp > CMakeFiles/PA1.dir/linkedlist.cpp.i
 
 CMakeFiles/PA1.dir/linkedlist.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PA1.dir/linkedlist.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/matthewhong/CPTS223/Hong_PA_1/linkedlist.cpp -o CMakeFiles/PA1.dir/linkedlist.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.cpp -o CMakeFiles/PA1.dir/linkedlist.cpp.s
 
 # Object files for target PA1
 PA1_OBJECTS = \
@@ -109,7 +109,7 @@ PA1: CMakeFiles/PA1.dir/main.cpp.o
 PA1: CMakeFiles/PA1.dir/linkedlist.cpp.o
 PA1: CMakeFiles/PA1.dir/build.make
 PA1: CMakeFiles/PA1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/matthewhong/CPTS223/Hong_PA_1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable PA1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mattthewhong/CPTS223/PA-1_Hong/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable PA1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PA1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -121,6 +121,6 @@ CMakeFiles/PA1.dir/clean:
 .PHONY : CMakeFiles/PA1.dir/clean
 
 CMakeFiles/PA1.dir/depend:
-	cd /home/matthewhong/CPTS223/Hong_PA_1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/matthewhong/CPTS223/Hong_PA_1 /home/matthewhong/CPTS223/Hong_PA_1 /home/matthewhong/CPTS223/Hong_PA_1/build /home/matthewhong/CPTS223/Hong_PA_1/build /home/matthewhong/CPTS223/Hong_PA_1/build/CMakeFiles/PA1.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mattthewhong/CPTS223/PA-1_Hong/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mattthewhong/CPTS223/PA-1_Hong /home/mattthewhong/CPTS223/PA-1_Hong /home/mattthewhong/CPTS223/PA-1_Hong/build /home/mattthewhong/CPTS223/PA-1_Hong/build /home/mattthewhong/CPTS223/PA-1_Hong/build/CMakeFiles/PA1.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/PA1.dir/depend
 

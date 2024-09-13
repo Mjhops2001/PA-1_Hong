@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/matthewhong/CPTS223/Hong_PA_1/linkedlist.cpp" "CMakeFiles/PA1.dir/linkedlist.cpp.o" "gcc" "CMakeFiles/PA1.dir/linkedlist.cpp.o.d"
-  "/home/matthewhong/CPTS223/Hong_PA_1/main.cpp" "CMakeFiles/PA1.dir/main.cpp.o" "gcc" "CMakeFiles/PA1.dir/main.cpp.o.d"
+  "/home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.cpp" "CMakeFiles/PA1.dir/linkedlist.cpp.o" "gcc" "CMakeFiles/PA1.dir/linkedlist.cpp.o.d"
+  "/home/mattthewhong/CPTS223/PA-1_Hong/main.cpp" "CMakeFiles/PA1.dir/main.cpp.o" "gcc" "CMakeFiles/PA1.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

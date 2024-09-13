@@ -77,15 +77,33 @@ int main()
         }
         else if (selection == 3) // Load Previous Game
         {
-            // =====================
-            // ===== some code =====
-            // =====================
+            ifstream myProfiles("/home/mattthewhong/CPTS223/PA-1_Hong/profiles.csv"); 
+
+            
+
+            if(!myProfiles.is_open()){
+                cout << "File wasn't opened" << endl; 
+            }else{
+                cout << "File is open, continuing operations." << endl; 
+            }
+
+            string line, word; 
+            while(getline(myProfiles, line)){
+                stringstream s(line); 
+
+                while(getline(s, word, ',')){
+                    cout << word << " "; 
+                }
+
+                cout << endl; 
+            }
         }
         else if (selection == 4) // Add Command
         {
-            // =====================
-            // ===== some code =====
-            // =====================
+            // create input file variable
+            
+
+
         }
         else if (selection == 5) // Remove Command
         {
