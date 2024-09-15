@@ -15,8 +15,9 @@ ADVANTAGES/DISADVANTAGES ARRAY
 
 using namespace std;
 
-struct profile_data{
-    string user_name = "player_name"; 
+struct profile_data
+{
+    string user_name = "player_name";
     int user_points = -1;
 };
 
@@ -72,10 +73,27 @@ bool check(ofstream &myFile)
     return boolean;
 }
 
+//* Main function
 int main()
 {
-    //? variables for initializing 
-    profile_data save_data; 
+    //? variables for initializing
+    profile_data save_data;
+
+    //? for testing node
+    string tString = "cd,\"short for change directory; changes active working directory\"";
+    string tString2 = "ls,\"short for lists; displays the file and directory names in the current working directory.\"";
+    Node *tNode1 = new Node(tString),
+         *tNode2 = new Node(tString2);
+
+    tNode1->setNext(tNode2);
+
+    //? tests functions for node... 
+    //? passed most tests, begin implementing list
+    cout << tNode1->get_commandDesc() << endl;
+    tNode1 = tNode1->getNext();
+    cout << tNode1->get_commandDesc() << endl;
+
+
 
     //? Main Menu Loop
     while (true)
@@ -197,7 +215,8 @@ int main()
                 cout << "Target found, displaying user info: " << endl
                      << "Username: " << save_data.user_name << endl
                      << "Total Score: " << save_data.user_points << endl;
-            }else //? target wasn't found, return to main loop
+            }
+            else //? target wasn't found, return to main loop
             {
                 cout << "Target wasn't found" << endl;
             }

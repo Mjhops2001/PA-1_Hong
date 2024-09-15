@@ -1,6 +1,8 @@
 CMakeFiles/PA1.dir/linkedlist.cpp.o: \
  /home/matthewhong/CPTS223/PA-1_Hong/linkedlist.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/11/fstream \
+ /usr/include/stdc-predef.h \
+ /home/matthewhong/CPTS223/PA-1_Hong/linkedlist.h \
+ /home/matthewhong/CPTS223/PA-1_Hong/node.h /usr/include/c++/11/fstream \
  /usr/include/c++/11/istream /usr/include/c++/11/ios \
  /usr/include/c++/11/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \

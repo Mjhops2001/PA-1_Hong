@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PA1.dir/linkedlist.cpp.o.d"
   "CMakeFiles/PA1.dir/main.cpp.o"
   "CMakeFiles/PA1.dir/main.cpp.o.d"
+  "CMakeFiles/PA1.dir/node.cpp.o"
+  "CMakeFiles/PA1.dir/node.cpp.o.d"
   "PA1"
   "PA1.pdb"
 )
