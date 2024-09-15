@@ -11,7 +11,7 @@ ADVANTAGES/DISADVANTAGES ARRAY
 #include <cstdlib>
 #include <chrono>
 #include <ctime>
-#include "linkedlist.cpp"
+#include "linkedlist.h"
 
 using namespace std;
 
@@ -87,13 +87,11 @@ int main()
 
     tNode1->setNext(tNode2);
 
-    //? tests functions for node... 
+    //? tests functions for node...
     //? passed most tests, begin implementing list
     cout << tNode1->get_commandDesc() << endl;
     tNode1 = tNode1->getNext();
     cout << tNode1->get_commandDesc() << endl;
-
-
 
     //? Main Menu Loop
     while (true)

@@ -23,6 +23,7 @@ private:
     Node *pNext;
 
 public:
+    Node();
     Node(const string &line);
 
     void setNext(Node *next);
