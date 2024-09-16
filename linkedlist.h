@@ -1,6 +1,8 @@
 #pragma once
-#include "node.h"
 #include <iomanip>
+#include <cstring>
+#include "node.h"
+
 
 /*
  * Class: list

@@ -37,12 +37,14 @@ void List::insert(const string &line)
     //? if list is empty:
     if (this->isEmpty() == true)
     {
+        // cout << "in empty loop" << endl;
         this->pHead = nNode;
         this->pTail = nNode;
     }
     //? if list already has an element
     else
     {
+        cout << pTail->get_commandName() << endl;
         this->pTail->setNext(nNode);
         this->pTail = nNode;
     }
@@ -53,13 +55,63 @@ void List::insert(const string &line)
     return;
 }
 
-bool List::remove(const string &target)
+bool List::remove(const string &target_command)
 {
-    bool value = false;
+    //? variables to keep track of the node after the target & one to create a copy list
+    //? and a bool value to track if the command name was found
+    bool found = false;
+    Node *current = this->pHead;
+    Node *previous = nullptr;
 
-    
+    cout << this->pTail->get_commandName() << endl
+         << endl;
+    cout << current->get_commandName() << endl;
+    //? if list is empty:
+    if (this->isEmpty() == true)
+    {
+        cout << "List is empty." << endl;
+        return found;
+    }
 
-    return value;
+    //? if the target is the first element of the list
+    if (current->get_commandName() == target_command)
+    {
+        found = true;
+        current = current->getNext();
+        this->pHead = current;
+    }
+
+    //? else:
+    else
+    {
+        while (current->getNext() != nullptr)
+        {
+            previous = current;
+
+            if (current->getNext()->get_commandName() == target_command)
+            {
+                found = true;
+                break;
+            }
+            current = current->getNext();
+        }
+        current = current->getNext();
+        cout << "previous: " << previous->get_commandName() << endl;
+        cout << "current: " << current->get_commandName() << endl;
+
+        previous->setNext(current->getNext());
+        cout << current->get_commandName() << endl;
+        current = previous;
+        this->pTail = previous;
+    }
+
+    if (found == true)
+    {
+        cout << "Target: " << target_command << " removed." << endl;
+        this->list_size--;
+    }
+
+    return found;
 }
 
 //? display()

@@ -7,6 +7,7 @@ ADVANTAGES/DISADVANTAGES ARRAY
 #include <sstream>
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <cstdlib>
 #include <chrono>
 #include <ctime>
@@ -150,10 +151,11 @@ int main()
             //? Note: questionNumber is a local variable for every game
             int qNumber;
             string nInput;
-
+            int qArray[30]; 
+            
             //* grab player name from input & store it in global userName
             //* or print loaded user data grabbed from menu option 3
-            /* if (userName == "player_name")
+             if (userName == "player_name")
             {
                 cout << "Please enter your name: ";
                 cin >> nInput;
@@ -176,13 +178,15 @@ int main()
             }
 
             cout << "User selected " << qNumber << " questions." << endl;
-            */
+
+
+            
             cout << "---------------------------------------" << endl;
             cout << endl
                  << endl;
         }
 
-        //? Game Rules -- Done
+        //? Game Rules -- DONE
         else if (selection == 1)
         {
             cout << "---------------Display Game Rules---------------" << endl;
@@ -201,7 +205,7 @@ int main()
                  << endl;
         }
 
-        //? Load Previous Game
+        //? Load Previous Game -- DONE
         else if (selection == 3)
         {
             cout << "---------------Load Previous Game---------------" << endl;
@@ -265,7 +269,7 @@ int main()
                  << endl;
         }
 
-        //? Add Commands --will have to re-do, only alterations should be made to the linked list, not the actual .csv in this function
+        //? Add Commands -- DONE
         else if (selection == 4)
         {
             cout << "---------------Add commands---------------" << endl;
@@ -319,28 +323,31 @@ int main()
                     adding_items = false;
                 }
             }
+            cout << "size: " << commands.size() << endl;
 
             cout << "------------------------------------------" << endl;
             cout << endl
                  << endl;
         }
 
-        //? Remove Commands
+        //? Remove Commands -- DONE
         else if (selection == 5)
         {
             cout << "---------------Remove Commands---------------" << endl;
-
             //? create input vars for the target we're searching for & the y/n input
             string target_command, input;
-            bool removing_items = true;
+            bool removing_items = true,
+                 removed = false;
 
-            //? display current contents of our list:
+            //? main loop to remove commands
             while (removing_items == true)
             {
-
+                //? display contents of list
                 cout << "List Contents: " << endl
                      << endl;
+
                 commands.display();
+
                 cout << endl
                      << endl;
 
@@ -349,28 +356,44 @@ int main()
                 cin.ignore();
                 cin >> target_command;
 
-                //! commands.remove(input);
+                //? pass target name to remove function in list
+                removed = commands.remove(target_command);
 
-                //* display if the command was found or not
-                //? and ask if the user wants to do the removal search again
-                //? user input y/n to stay in loop or exit
-                do
+                //? if the element was removed & we are still in the loop of removing items
+                if (removed == true && removing_items == true)
                 {
-                    cout << "Command name not found, search again? [y/n]: ";
-                    cin >> input;
-
-                    if (input == "y" || input == "n" || input == "yes" || input == "no")
+                    //? safety loop to ensure input values are y, Y, n, N
+                    do
                     {
-                        break;
+                        cout << "Continue removing commands? [y/n]: ";
+                        cin >> input;
+
+                        if (input == "y" || input == "n" || input == "Y" || input == "N")
+                        {
+                            break;
+                        }
+                    } while (true);
+
+                    //? if the user input is n/N, break out and return to main loop
+                    if (input == "n" || input == "N")
+                    {
+                        removing_items = false;
                     }
-                } while (true);
+                }
+
+                cout << "List Contents: " << endl
+                     << endl;
+
+                commands.display();
             }
+
+            cout << "size: " << commands.size() << endl;
             cout << "---------------------------------------------" << endl;
             cout << endl
                  << endl;
         }
 
-        //? Exit --Done
+        //? Exit -- DONE
         else if (selection == 6)
         {
             cout << "---------------Exit Program---------------" << endl;
@@ -382,8 +405,12 @@ int main()
             //? display when the user exited the program
             cout << "User Exited Program on " << ctime(&cTime) << endl;
 
-            //? overwrite the commands file to update the insertions added
+            //? overwrite the commands file to update the list w/ the added/removed commands during the program's run-time
             commands.overwrite();
+
+            //? console messages showing data was saved
+            cout << "Commands saved to commands.csv" << endl; 
+            cout << "Player data saved to profiles.csv" << endl; 
 
             cout << "------------------------------------------" << endl;
             cout << endl
