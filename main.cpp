@@ -77,7 +77,7 @@ bool check(ofstream &myFile)
 void populate(List &myList) // Read CSV and input data into a linked list
 {
     cout << "---------------Populating List---------------" << endl;
-
+ 
     //? Open file containing list of commands & verify it opened
     ifstream myCommands("/home/matthewhong/CPTS223/PA-1_Hong/commands.csv");
     check(myCommands);
@@ -155,17 +155,17 @@ int main()
             
             //* grab player name from input & store it in global userName
             //* or print loaded user data grabbed from menu option 3
-             if (userName == "player_name")
+             if (save_data.user_name == "player_name")
             {
                 cout << "Please enter your name: ";
                 cin >> nInput;
-                userName = nInput;
+                save_data.user_name = nInput;
             }
             else
             {
                 cout << "Loaded User Data: " << endl
-                     << "Username: " << userName << endl
-                     << "Total Score: " << userPoints << endl;
+                     << "Username: " << save_data.user_name << endl
+                     << "Total Score: " << save_data.user_points << endl;
             }
 
             //* grab the number of questions from user input [between 5 - 30]

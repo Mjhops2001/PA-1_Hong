@@ -1,5 +1,5 @@
 CMakeFiles/PA1.dir/main.cpp.o: \
- /home/matthewhong/CPTS223/PA-1_Hong/main.cpp /usr/include/stdc-predef.h \
+ /home/mattthewhong/CPTS223/PA-1_Hong/main.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/11/fstream /usr/include/c++/11/istream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -152,7 +152,7 @@ CMakeFiles/PA1.dir/main.cpp.o: \
  /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
  /usr/include/c++/11/limits /usr/include/c++/11/ctime \
  /usr/include/c++/11/bits/parse_numbers.h \
- /home/matthewhong/CPTS223/PA-1_Hong/linkedlist.h \
+ /home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.h \
  /usr/include/c++/11/iomanip /usr/include/c++/11/locale \
  /usr/include/c++/11/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
@@ -163,4 +163,4 @@ CMakeFiles/PA1.dir/main.cpp.o: \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/tuple \
  /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h \
- /home/matthewhong/CPTS223/PA-1_Hong/node.h
+ /home/mattthewhong/CPTS223/PA-1_Hong/node.h
