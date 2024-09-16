@@ -1,7 +1,7 @@
 CMakeFiles/PA1.dir/linkedlist.cpp.o: \
- /home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.cpp \
+ /home/matthewhong/CPTS223/PA-1_Hong/linkedlist.cpp \
  /usr/include/stdc-predef.h \
- /home/mattthewhong/CPTS223/PA-1_Hong/linkedlist.h \
+ /home/matthewhong/CPTS223/PA-1_Hong/linkedlist.h \
  /usr/include/c++/11/iomanip \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -152,7 +152,7 @@ CMakeFiles/PA1.dir/linkedlist.cpp.o: \
  /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/cstring \
  /usr/include/string.h /usr/include/strings.h \
- /home/mattthewhong/CPTS223/PA-1_Hong/node.h /usr/include/c++/11/fstream \
+ /home/matthewhong/CPTS223/PA-1_Hong/node.h /usr/include/c++/11/fstream \
  /usr/include/c++/11/istream /usr/include/c++/11/ios \
  /usr/include/c++/11/bits/basic_ios.h \
  /usr/include/c++/11/bits/basic_ios.tcc /usr/include/c++/11/ostream \

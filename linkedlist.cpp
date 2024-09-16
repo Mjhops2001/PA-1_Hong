@@ -44,7 +44,6 @@ void List::insert(const string &line)
     //? if list already has an element
     else
     {
-        cout << pTail->get_commandName() << endl;
         this->pTail->setNext(nNode);
         this->pTail = nNode;
     }
@@ -66,6 +65,7 @@ bool List::remove(const string &target_command)
     cout << this->pTail->get_commandName() << endl
          << endl;
     cout << current->get_commandName() << endl;
+
     //? if list is empty:
     if (this->isEmpty() == true)
     {
@@ -96,11 +96,7 @@ bool List::remove(const string &target_command)
             current = current->getNext();
         }
         current = current->getNext();
-        cout << "previous: " << previous->get_commandName() << endl;
-        cout << "current: " << current->get_commandName() << endl;
-
         previous->setNext(current->getNext());
-        cout << current->get_commandName() << endl;
         current = previous;
         this->pTail = previous;
     }
@@ -164,4 +160,22 @@ void List::overwrite()
 
     myCommands.close();
     return;
+}
+
+Node *List::search(const int &target_number)
+{
+    Node *copyList = this->pHead,
+         *target;
+
+    for (int i = 1; i < this->size(); i++)
+    {
+        if (target_number == i)
+        {
+            target = copyList; 
+            break;
+        }
+        copyList = copyList->getNext();
+    }
+
+    return target; 
 }

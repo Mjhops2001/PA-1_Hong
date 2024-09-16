@@ -48,8 +48,9 @@ public:
    //? Member Functions:
    bool isEmpty();
    void insert(const string &line);
-   bool remove(const string &target);
+   bool remove(const string &target_command);
    void display();
    int size();
    void overwrite();
+   Node* search(const int& target_number); 
 };

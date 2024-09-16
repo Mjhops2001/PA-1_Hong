@@ -1,6 +1,6 @@
 CMakeFiles/PA1.dir/node.cpp.o: \
- /home/mattthewhong/CPTS223/PA-1_Hong/node.cpp /usr/include/stdc-predef.h \
- /home/mattthewhong/CPTS223/PA-1_Hong/node.h /usr/include/c++/11/fstream \
+ /home/matthewhong/CPTS223/PA-1_Hong/node.cpp /usr/include/stdc-predef.h \
+ /home/matthewhong/CPTS223/PA-1_Hong/node.h /usr/include/c++/11/fstream \
  /usr/include/c++/11/istream /usr/include/c++/11/ios \
  /usr/include/c++/11/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \

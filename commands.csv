@@ -1,8 +1,3 @@
-top,"provides a real time dynamic view of the running system"
-chown,"short for change owner; changes the current owner of the files or directory"
-clear,"short for clear; clears the terminal screen"
-mv,"short for move; used to move one or more files from one place to another"
-gcc,"GNU Compiler Collections is used to compile mainly C and C++ language"
 who,"short for who; used to get info about the currently logged in user"
 df,"short for display files; displays info about total and available space"
 find,"short for find; used to find files & directories and perform operations"

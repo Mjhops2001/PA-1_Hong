@@ -24,7 +24,7 @@ using namespace std;
 struct profile_data
 {
     string user_name = "player_name";
-    int user_points = -1;
+    unsigned int user_points = -1;
 };
 
 /*
@@ -77,7 +77,7 @@ bool check(ofstream &myFile)
 void populate(List &myList) // Read CSV and input data into a linked list
 {
     cout << "---------------Populating List---------------" << endl;
- 
+
     //? Open file containing list of commands & verify it opened
     ifstream myCommands("/home/matthewhong/CPTS223/PA-1_Hong/commands.csv");
     check(myCommands);
@@ -119,16 +119,70 @@ void populate(List &myList) // Read CSV and input data into a linked list
 
 /*
  *---------------------------------------------------------------------*
+ * isUnique()
+ ? takes in a randomly generated number, the array of questions, & the current size of the array of questions
+ */
+bool isUnique(const int &random_number, const int *array, int array_size)
+{
+    bool found = false;
+
+    for (int i = 0; i < array_size; i++)
+    {
+        if (array[i] == random_number)
+        {
+            found = true;
+        }
+    }
+
+    return found;
+}
+
+/*
+ *---------------------------------------------------------------------*
+ * generateQuestions()
+ ? takes in a randomly generated numbers, the array of questions, & the current size of the array of questions
+ */
+void generateQuestions(int *questions_array, int &number_of_questions, int size)
+{
+
+    //? grab the number of questions from user input [between 5 - 30]
+    while (number_of_questions < 5 || number_of_questions > 30)
+    {
+        cout << "Please select how many questions you would like to " << endl
+             << "be asked [5 - " << size << "]: ";
+
+        cin >> number_of_questions;
+    }
+
+    cout << "User selected: " << number_of_questions << " questions." << endl;
+
+    //? generate unique numbers for the x number of questions the user selected
+    for (int i = 0; i < number_of_questions; i++)
+    {
+        int random_num;
+        bool unique;
+        do
+        {
+            random_num = 5 + rand() % (size - 5 + 1);
+            unique = !isUnique(random_num, questions_array, i);
+        } while (!unique);
+
+        questions_array[i] = random_num;
+    }
+}
+
+/*
+ *---------------------------------------------------------------------*
  * Main function
  ? contains all main program functions
  */
 int main()
 {
-    //? variables for initializing
+    //? variables for profiles & list of commands
     profile_data save_data;
     List commands;
 
-    //? for testing list
+    //? populate the linked list w/ the commands in commands.csv
     populate(commands);
 
     //? Main Menu Loop
@@ -142,25 +196,26 @@ int main()
         cout << endl
              << endl;
 
-        //? Play Game
+        //? Play Game --DONE
         if (selection == 2)
         {
             cout << "---------------Play Game---------------" << endl;
 
             //? local vars to grab userName & the number of questions
             //? Note: questionNumber is a local variable for every game
-            int qNumber;
+            int number_of_questions,
+                questions_array[30];
             string nInput;
-            int qArray[30]; 
-            
-            //* grab player name from input & store it in global userName
-            //* or print loaded user data grabbed from menu option 3
-             if (save_data.user_name == "player_name")
+            srand(time(0));
+
+            //? ask for user data
+            if (save_data.user_name == "player_name")
             {
                 cout << "Please enter your name: ";
                 cin >> nInput;
                 save_data.user_name = nInput;
             }
+            //? load user data
             else
             {
                 cout << "Loaded User Data: " << endl
@@ -168,20 +223,114 @@ int main()
                      << "Total Score: " << save_data.user_points << endl;
             }
 
-            //* grab the number of questions from user input [between 5 - 30]
-            while (qNumber < 5 || qNumber > 30)
-            {
-                cout << "Please select how many questions you would like to " << endl
-                     << "be asked [5 - 30]: ";
+            //? generate unique questions and populate the array
+            generateQuestions(questions_array, number_of_questions, commands.size());
 
-                cin >> qNumber;
+            //? main game-play loop
+            int rounds = 0,
+                random_layout,
+                user_answer;
+
+            while (rounds != number_of_questions)
+            {
+                cout << "---------------Round " << rounds + 1 << "---------------" << endl;
+                //? create 3 nodes: 1 for the correct answer, and 2 for the decoy answers
+                Node *c_answer = new Node(),
+                     *d_answer1 = new Node(),
+                     *d_answer2 = new Node();
+
+                //? store data into the correct node & decoys
+                c_answer = commands.search(questions_array[rounds]);
+                d_answer1 = commands.search(questions_array[rounds] + 2);
+                d_answer2 = commands.search(questions_array[rounds] - 2);
+
+                random_layout = 1 + rand() % 3;
+
+                if (random_layout == 1)
+                {
+                    cout << "Command: " << c_answer->get_commandName() << endl;
+                    cout << "1. " << c_answer->get_commandDesc() << endl
+                         << "2. " << d_answer1->get_commandDesc() << endl
+                         << "3. " << d_answer2->get_commandDesc() << endl;
+
+                    do
+                    {
+                        cout << "Answer [1-3]: ";
+                        cin >> user_answer;
+                    } while (user_answer < 1 || user_answer > 3);
+
+                    if (user_answer == 1)
+                    {
+                        save_data.user_points++;
+                        cout << "Correct! " << c_answer->get_commandName() << " = " << c_answer->get_commandDesc() << endl
+                             << "Total Points: " << save_data.user_points << endl;
+                    }
+                    else
+                    {
+                        save_data.user_points--;
+                        cout << "Incorrect! " << c_answer->get_commandName() << " = " << c_answer->get_commandDesc() << endl
+                             << "Total Points: " << save_data.user_points << endl;
+                    }
+                }
+                else if (random_layout == 2)
+                {
+                    cout << "Command: " << c_answer->get_commandName() << endl;
+                    cout << "1. " << d_answer1->get_commandDesc() << endl
+                         << "2. " << c_answer->get_commandDesc() << endl
+                         << "3. " << d_answer2->get_commandDesc() << endl;
+
+                    do
+                    {
+                        cout << "Answer [1-3]: ";
+                        cin >> user_answer;
+                    } while (user_answer < 1 || user_answer > 3);
+
+                    if (user_answer == 2)
+                    {
+                        save_data.user_points++;
+                        cout << "Correct! " << c_answer->get_commandName() << " = " << c_answer->get_commandDesc() << endl
+                             << "Total Points: " << save_data.user_points << endl;
+                    }
+                    else
+                    {
+                        save_data.user_points--;
+                        cout << "Incorrect! " << c_answer->get_commandName() << " = " << c_answer->get_commandDesc() << endl
+                             << "Total Points: " << save_data.user_points << endl;
+                    }
+                }
+                else if (random_layout == 3)
+                {
+                    //? display command name & 3 options
+                    cout << "Command: " << c_answer->get_commandName() << endl;
+                    cout << "1. " << d_answer2->get_commandDesc() << endl
+                         << "2. " << d_answer1->get_commandDesc() << endl
+                         << "3. " << c_answer->get_commandDesc() << endl;
+
+                    do
+                    {
+                        cout << "Answer [1-3]: ";
+                        cin >> user_answer;
+                    } while (user_answer < 1 || user_answer > 3);
+
+                    //? if correct
+                    if (user_answer == 3)
+                    {
+                        save_data.user_points++;
+                        cout << "Correct! " << c_answer->get_commandName() << " = " << c_answer->get_commandDesc() << endl
+                             << "Total Points: " << save_data.user_points << endl;
+                    }
+                    //? if wrong
+                    else
+                    {
+                        save_data.user_points--;
+                        cout << "Incorrect! " << c_answer->get_commandName() << " = " << c_answer->get_commandDesc() << endl
+                             << "Total Points: " << save_data.user_points << endl;
+                    }
+                }
+                rounds++;
             }
 
-            cout << "User selected " << qNumber << " questions." << endl;
-
-
-            
-            cout << "---------------------------------------" << endl;
+            cout << "-------------------------------------" << endl;
             cout << endl
                  << endl;
         }
@@ -408,9 +557,16 @@ int main()
             //? overwrite the commands file to update the list w/ the added/removed commands during the program's run-time
             commands.overwrite();
 
+            //? open profiles.csv & save data
+            ofstream myProfiles("/home/matthewhong/CPTS223/PA-1_Hong/profiles.csv", ios::app);
+            check(myProfiles);
+
+            myProfiles << save_data.user_name << "," << save_data.user_points << endl;
+
+            myProfiles.close();
             //? console messages showing data was saved
-            cout << "Commands saved to commands.csv" << endl; 
-            cout << "Player data saved to profiles.csv" << endl; 
+            cout << "Commands saved to commands.csv" << endl;
+            cout << "Player data saved to profiles.csv" << endl;
 
             cout << "------------------------------------------" << endl;
             cout << endl
