@@ -7,9 +7,11 @@ Node::Node()
     this->pNext = nullptr;
 }
 
-Node::Node(const string &line)
+Node::Node(const string &nName, const string &nDesc)
 {
-    this->set_commandDesc(line);
+    this->set_commandName(nName); 
+    this->set_commandDesc(nDesc); 
+    this->pNext = nullptr; 
 }
 
 void Node::setNext(Node *next)

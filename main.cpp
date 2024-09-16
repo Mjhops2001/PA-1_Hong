@@ -3,7 +3,6 @@ ADVANTAGES/DISADVANTAGES LINKED LIST
 
 ADVANTAGES/DISADVANTAGES ARRAY
 */
-
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -15,6 +14,12 @@ ADVANTAGES/DISADVANTAGES ARRAY
 
 using namespace std;
 
+/*
+ *---------------------------------------------------------------------*
+ * profile_data
+ ? struct to hold the stored data in profiles.csv
+ ? (the points & name of saved player data)
+ */
 struct profile_data
 {
     string user_name = "player_name";
@@ -22,17 +27,7 @@ struct profile_data
 };
 
 /*
- * populate()
- ? reads commands.csv & inputs data into linked list
- */
-// void populate(Linked_List<string, string> *mainlist) // Read CSV and input data into a linked list
-//{
-//  ====================
-//  ======= code =======
-//  ====================
-//}
-
-/*
+ *---------------------------------------------------------------------*
  * check()
  ? checks if the passed ifstream/ofstream variable opened properly
  ? returns true if open, false if closed
@@ -73,25 +68,67 @@ bool check(ofstream &myFile)
     return boolean;
 }
 
-//* Main function
+/*
+ *---------------------------------------------------------------------*
+ * populate()
+ ? reads commands.csv & inputs data into linked list
+ */
+void populate(List &myList) // Read CSV and input data into a linked list
+{
+    cout << "---------------Populating List---------------" << endl;
+
+    //? Open file containing list of commands & verify it opened
+    ifstream myCommands("/home/matthewhong/CPTS223/PA-1_Hong/commands.csv");
+    check(myCommands);
+    string line,
+        input;
+
+    //? contine parsing thru file & insert the commands into the list
+    while (getline(myCommands, line))
+    {
+        myList.insert(line);
+    }
+
+    //? ask user if they want to display the list contents
+    do
+    {
+        cout << "List was successfuly loaded. Display list contents? [y/n]: ";
+        cin >> input;
+    } while (input != "y" && input != "n" && input != "Y" && input != "N");
+
+    //? input == yes:
+    if (input == "y" || input == "Y")
+    {
+        cout << "List size: " << myList.size() << endl;
+        cout << "List contents: " << endl
+             << endl;
+        myList.display();
+    }
+
+    myCommands.close();
+    cout << "---------------------------------------------" << endl;
+    cout << endl
+         << endl;
+
+    if (input == "n" || input == "N")
+    {
+        system("clear");
+    }
+}
+
+/*
+ *---------------------------------------------------------------------*
+ * Main function
+ ? contains all main program functions
+ */
 int main()
 {
     //? variables for initializing
     profile_data save_data;
+    List commands;
 
-    //? for testing node
-    string tString = "cd,\"short for change directory; changes active working directory\"";
-    string tString2 = "ls,\"short for lists; displays the file and directory names in the current working directory.\"";
-    Node *tNode1 = new Node(tString),
-         *tNode2 = new Node(tString2);
-
-    tNode1->setNext(tNode2);
-
-    //? tests functions for node...
-    //? passed most tests, begin implementing list
-    cout << tNode1->get_commandDesc() << endl;
-    tNode1 = tNode1->getNext();
-    cout << tNode1->get_commandDesc() << endl;
+    //? for testing list
+    populate(commands);
 
     //? Main Menu Loop
     while (true)
@@ -109,8 +146,8 @@ int main()
         {
             cout << "---------------Play Game---------------" << endl;
 
-            //* local vars to grab userName & the number of questions
-            //* Note: questionNumber is a local variable for every game
+            //? local vars to grab userName & the number of questions
+            //? Note: questionNumber is a local variable for every game
             int qNumber;
             string nInput;
 
@@ -183,6 +220,7 @@ int main()
             cin.ignore();
             cin >> target;
 
+            //? variables for parsing thru file
             string line,
                 fString;
 
@@ -231,18 +269,14 @@ int main()
         else if (selection == 4)
         {
             cout << "---------------Add commands---------------" << endl;
-            //? create output file & check status
-            ofstream commands("/home/matthewhong/CPTS223/PA-1_Hong/commands.csv", ios::app);
-            check(commands);
-
-            //? create input variables to store user inputted data
-            string inputName, inputDesc, input;
+            //? create input variables to store user inputted data & bool var to
+            //? keep track of if the user is in the loop or not
+            string inputName, inputDesc, input, line;
+            bool adding_items = true;
 
             //? Main loop to add commands
-            bool adding_items = true;
             while (adding_items == true)
             {
-
                 //? input command name
                 cout << "Enter command name: ";
                 cin.ignore();
@@ -253,12 +287,21 @@ int main()
                 cin.ignore();
                 getline(cin, inputDesc);
 
-                //? write command name & desc. to commands.csv & console to
-                //? confirm it was added
-                commands << inputName << ",\"" << inputDesc << "\"" << endl;
-                cout << "Added command: " << inputName << endl;
+                line = inputName + "," + "\"" + inputDesc + "\"";
+                cout << endl
+                     << endl;
 
-                //? input y/n to continue adding commands or return to main menu
+                //? insert user inputs into linked list
+                commands.insert(line);
+
+                //? display list to confirm insertion
+                cout << "List Contents: " << endl
+                     << endl;
+                commands.display();
+                cout << endl
+                     << endl;
+
+                //? user input y/n to stay in loop or exit
                 do
                 {
                     cout << "Continue adding commands? [y/n]";
@@ -277,9 +320,6 @@ int main()
                 }
             }
 
-            //? close file to ensure no loss of data
-            commands.close();
-
             cout << "------------------------------------------" << endl;
             cout << endl
                  << endl;
@@ -290,11 +330,41 @@ int main()
         {
             cout << "---------------Remove Commands---------------" << endl;
 
-            //? Might need to tinker w/ linked list, load all the elements
-            //? in commands.csv into said list then remove w/ linked list
-            //? functions and then re-write the edited list to
-            //? commands.csv
+            //? create input vars for the target we're searching for & the y/n input
+            string target_command, input;
+            bool removing_items = true;
 
+            //? display current contents of our list:
+            while (removing_items == true)
+            {
+
+                cout << "List Contents: " << endl
+                     << endl;
+                commands.display();
+                cout << endl
+                     << endl;
+
+                //? get command name
+                cout << "Enter search target's name: ";
+                cin.ignore();
+                cin >> target_command;
+
+                //! commands.remove(input);
+
+                //* display if the command was found or not
+                //? and ask if the user wants to do the removal search again
+                //? user input y/n to stay in loop or exit
+                do
+                {
+                    cout << "Command name not found, search again? [y/n]: ";
+                    cin >> input;
+
+                    if (input == "y" || input == "n" || input == "yes" || input == "no")
+                    {
+                        break;
+                    }
+                } while (true);
+            }
             cout << "---------------------------------------------" << endl;
             cout << endl
                  << endl;
@@ -311,6 +381,9 @@ int main()
 
             //? display when the user exited the program
             cout << "User Exited Program on " << ctime(&cTime) << endl;
+
+            //? overwrite the commands file to update the insertions added
+            commands.overwrite();
 
             cout << "------------------------------------------" << endl;
             cout << endl
